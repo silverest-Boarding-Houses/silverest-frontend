@@ -25,13 +25,13 @@ const Sidebar = () => {
             <HomeIcon className="w-6 h-6" />
             <span className={`ml-2 ${isOpen ? 'block' : 'hidden'} md:block`}>Home</span>
           </a>
-          <a href="#" className="flex items-center px-4 py-2 text-gray-200 hover:bg-gray-700 hover:text-white">
+          <a href="Admin/AgentManagement" className="flex items-center px-4 py-2 text-gray-200 hover:bg-gray-700 hover:text-white">
             <UsersIcon className="w-6 h-6" />
-            <span className={`ml-2 ${isOpen ? 'block' : 'hidden'} md:block`}>Manage Admins</span>
+            <span className={`ml-2 ${isOpen ? 'block' : 'hidden'} md:block`}>Manage Agent</span>
           </a>
           <a href="#" className="flex items-center px-4 py-2 text-gray-200 hover:bg-gray-700 hover:text-white">
             <UsersIcon className="w-6 h-6" />
-            <span className={`ml-2 ${isOpen ? 'block' : 'hidden'} md:block`}>Manage Agents</span>
+            <span className={`ml-2 ${isOpen ? 'block' : 'hidden'} md:block`}>Manage Admin</span>
           </a>
           <a href="#" className="flex items-center px-4 py-2 text-gray-200 hover:bg-gray-700 hover:text-white">
             <FaMoneyBillWave className="w-6 h-6" />

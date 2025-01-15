@@ -31,9 +31,41 @@ export default function Applications() {
     fetchAgents();
   }, []);
 
+  
+
+  const handleDelete = async (id: number) => {
+    const isConfirmed = window.confirm("Are you sure you want to delete this an agent?");
+    if (!isConfirmed) return;
+
+    try {
+      const response = await axios.delete(`http://localhost:3000/agents/${id}`);
+      if (response.status === 200) {
+        setAgents(agents.filter((Agent) => Agent.id !== id)); // Remove deleted hostel from the list
+      }
+    } catch (error) {
+      console.error("Error deleting agent:", error);
+      setErrorMessage("Failed to delete agent");
+    }
+  };
+
+
   const handleStatusUpdate = async (id: number, status: 'approved' | 'rejected') => {
     try {
+      // Update the agent's status
       await axios.patch(`http://localhost:3000/agents/${id}/status`, { status });
+  
+      // If the status is 'approved', add the agent to the admins list
+      if (status === 'approved') {
+        const agentToApprove = agents.find((agent) => agent.id === id);
+        if (agentToApprove) {
+          await axios.post('http://localhost:3000/admins', {
+            name: `${agentToApprove.firstname} ${agentToApprove.lastname}`,
+            email: agentToApprove.email,
+          });
+        }
+      }
+  
+      // Update the UI
       setAgents((prevAgents) =>
         prevAgents.map((agent) =>
           agent.id === id ? { ...agent, status } : agent
@@ -43,7 +75,7 @@ export default function Applications() {
       console.error('Error updating agent status:', error);
     }
   };
-
+  
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Agent Applications</h1>
@@ -60,6 +92,7 @@ export default function Applications() {
             <th className="border p-2">Background</th>
             <th className="border p-2">Status</th>
             <th className="border p-2">Actions</th>
+            <th className="border p-2">Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -103,6 +136,10 @@ export default function Applications() {
                     </>
                   )}
                 </td>
+                <td><button 
+                onClick={() => handleDelete(agent.id)}
+                
+                className='bg-red-700 text-white px-2 py-1 hover:bg-orange-600'>Delete</button></td>
               </tr>
             ))
           ) : (
@@ -117,3 +154,7 @@ export default function Applications() {
     </div>
   );
 }
+function setErrorMessage(arg0: string) {
+  throw new Error('Function not implemented.');
+}
+

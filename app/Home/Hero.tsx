@@ -1,8 +1,7 @@
-'use client'
+"use client"
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-// Import your logo image here if needed
 
 const Hero = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,28 +20,18 @@ const Hero = () => {
       <div className="absolute inset-0 bg-black/70"></div>
 
       <header className="relative z-10 flex items-center justify-between px-6 py-4 bg-black/50 backdrop-blur-lg shadow-md">
-        {/* Logo */}
         <div>
-          {/* <Image
-            className="ml-2"
-            alt="logo"
-            src={Logo}
-            width={80}
-            height={80}
-          /> */}
+          {/* Logo */}
         </div>
 
-        {/* Desktop Navigation */}
         <nav className="hidden md:flex flex-grow justify-center space-x-8 text-white font-semibold">
           <a href="/Home" className="hover:text-gray-300 transition-all duration-300 text-lg tracking-wider">Home</a>
-        
-  
           <a href="/Explore" className="hover:text-gray-300 transition-all duration-300 text-lg tracking-wider">Houses</a>
           <a href="/Agents" className="hover:text-gray-300 transition-all duration-300 text-lg tracking-wider">Agents</a>
           <a href="/About" className="hover:text-gray-300 transition-all duration-300 text-lg tracking-wider">About Us</a>
+          <a href="/About" className="hover:text-gray-300 transition-all duration-300 text-lg tracking-wider">Contact Us</a>
         </nav>
 
-        {/* Admin Button */}
         <a
           href="/Admin/Login"
           className="hidden md:block rounded-full border border-white px-4 py-2 text-sm text-white shadow-lg hover:bg-white hover:text-black transition-all duration-300"
@@ -50,7 +39,6 @@ const Hero = () => {
           Admin
         </a>
 
-        {/* Hamburger Icon for Mobile */}
         <div className="md:hidden">
           <button
             className="inline-flex items-center justify-center p-2 rounded-md text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-white"
@@ -80,27 +68,28 @@ const Hero = () => {
         </div>
       </header>
 
-      {/* Mobile Menu */}
       <div className={`${isOpen ? 'block' : 'hidden'} md:hidden bg-black/80 p-4 rounded-lg shadow-lg`}>
         <nav className="space-y-4 text-center text-white">
           <a href="/Home" className="block py-2 text-lg hover:bg-gray-800 rounded-md">Home</a>
           <a href="/Properties" className="block py-2 text-lg hover:bg-gray-800 rounded-md">Houses</a>
+
+          {/* Categories Dropdown */}
           <div className="relative">
             <button
-              className="block py-2 text-lg w-full text-left hover:bg-gray-800 rounded-md focus:outline-none"
               onClick={toggleCategories}
+              className="w-full py-2 text-lg text-white bg-transparent hover:bg-gray-800 rounded-md"
             >
               Categories
             </button>
-            {/* Dropdown Menu for Categories */}
-            <div className={`${isCategoriesOpen ? 'block' : 'hidden'} mt-2 bg-white text-black rounded-md shadow-lg`}>
-              <ul className="py-2">
-                <li><a href="#" className="block px-4 py-2 hover:bg-gray-200">Rentals</a></li>
-                <li><a href="#" className="block px-4 py-2 hover:bg-gray-200">For Sale</a></li>
-                <li><a href="#" className="block px-4 py-2 hover:bg-gray-200">Cars</a></li>
-              </ul>
-            </div>
+            {isCategoriesOpen && (
+              <div className="absolute right-0 mt-2 bg-black/90 text-white rounded-md w-48 shadow-lg">
+                <a href="/Category1" className="block px-4 py-2 hover:bg-gray-700">Category 1</a>
+                <a href="/Category2" className="block px-4 py-2 hover:bg-gray-700">Category 2</a>
+                <a href="/Category3" className="block px-4 py-2 hover:bg-gray-700">Category 3</a>
+              </div>
+            )}
           </div>
+
           <a href="/Agents" className="block py-2 text-lg hover:bg-gray-800 rounded-md">Agents</a>
           <a href="/About" className="block py-2 text-lg hover:bg-gray-800 rounded-md">About Us</a>
           <a
@@ -112,7 +101,6 @@ const Hero = () => {
         </nav>
       </div>
 
-      {/* Hero Text */}
       <div className="relative z-10 text-center mt-16">
         <h1 className="text-white text-5xl font-bold">
           Silverest Boarding Houses<br />
@@ -122,9 +110,7 @@ const Hero = () => {
           Discover the perfect off-campus accommodation that suits your needs and lifestyle.
         </p>
 
-        {/* Call to Action Buttons */}
         <div className="mt-8 flex justify-center space-x-4">
-       
           <a
             href="/Explore"
             className="inline-block w-40 py-3 bg-green-700 text-white font-semibold rounded-md hover:bg-orange-600 transition-all"

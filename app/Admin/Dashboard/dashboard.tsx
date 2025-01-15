@@ -97,7 +97,7 @@ export default function AdminActions() {
           <h3 className="text-lg font-semibold mb-2">Delete a House</h3>
           <p className="text-sm text-gray-700 mb-4">
             You can remove a house by deleting a paticular booking associated with that house first then Remove a house from your listing   </p>
-          <a href="/Admin/Delete">
+          <a href="/Admin/DeleteHostel">
             <button className="bg-red-700 text-white px-3 py-1 rounded-md hover:bg-orange-600 transition">
               Delete House Now
             </button>
@@ -114,7 +114,7 @@ export default function AdminActions() {
           <p className="text-sm text-gray-700 mb-4">
             this section you can view  the available houses in your website you can also search using a house name.
           </p>
-          <a href="/Admin/Delete">
+          <a href="/Admin/AllHouses">
             <button className="bg-green-700 text-white px-3 py-1 rounded-md hover:bg-orange-600 transition">
               View All House Now
             </button>
@@ -130,7 +130,7 @@ export default function AdminActions() {
           <p className="text-sm text-gray-700 mb-4">
             select booking History using date or search using booking number to view a particular booking
           </p>
-          <a href="/Admin/Delete">
+          <a href="/Admin/History">
             <button className="bg-green-700 text-white px-3 py-1 rounded-md hover:bg-orange-600 transition">
               View Booking History
             </button>
@@ -149,7 +149,7 @@ export default function AdminActions() {
           </p>
           <a href="/Admin/Applications">
             <button className="bg-green-700 text-white px-3 py-1 rounded-md hover:bg-orange-600 transition">
-              View Application Forms
+              Manage Application Forms
             </button>
           </a>
         </div>
@@ -163,7 +163,7 @@ export default function AdminActions() {
           <p className="text-sm text-gray-700 mb-4">
             Remove a booking from your bookings first inorder to delete a house since a booking rely on house .
           </p>
-          <a href="/Admin/Delete">
+          <a href="/Admin/DeleteBooking">
             <button className="bg-red-700 text-white px-3 py-1 rounded-md hover:bg-orange-600 transition">
               Delete Booking Now
             </button>
