@@ -2,6 +2,9 @@
 
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; // Import styles for Toastify
+
 
 interface Agent {
   id: number;
@@ -18,78 +21,82 @@ interface Admin {
   id: number;
   name: string;
   email: string;
-  password:string;
+  password: string;
 }
 
 export default function AgentManagement() {
   const [agents, setAgents] = useState<Agent[]>([]);
   const [admins, setAdmins] = useState<Admin[]>([]);
-  const [newAdmin, setNewAdmin] = useState({ name: '', email: '' ,password:''});
+  const [newAdmin, setNewAdmin] = useState({ name: '', email: '', password: '' });
 
-  // Fetch approved agents
+  // Fetch Approved Agents
   useEffect(() => {
-    async function fetchAgents() {
+    const fetchAgents = async () => {
       try {
         const response = await axios.get('http://localhost:3000/agents?status=approved');
         setAgents(response.data);
       } catch (error) {
         console.error('Error fetching agents:', error);
       }
-    }
+    };
     fetchAgents();
   }, []);
 
-  // Fetch admins
+  // Fetch Admins
   useEffect(() => {
-    async function fetchAdmins() {
+    const fetchAdmins = async () => {
       try {
         const response = await axios.get('http://localhost:3000/admins');
         setAdmins(response.data);
       } catch (error) {
-        console.error('Error fetching admins:', error);
+        console.error('Error fetching agent:', error);
+        toast.error("error fetching agent",{position:'top-right'})
+        // 
       }
-    }
+    };
     fetchAdmins();
   }, []);
 
-  // Handle agent creation
+  // Create Admin
   const handleCreateAdmin = async () => {
-    if (!newAdmin.name || !newAdmin.email) {
-      alert('Name and email are required.');
+    if (!newAdmin.name || !newAdmin.email || !newAdmin.password) {
+      toast.warn("All fields are required",{position:'top-right'})
+    
       return;
     }
-
     try {
       const response = await axios.post('http://localhost:3000/admins', newAdmin);
       if (response.status === 201) {
-        setAdmins([...admins, response.data]);
-        setNewAdmin({ name: '', email: '',password:'' });
+        setAdmins((prevAdmins) => [...prevAdmins, response.data]);
+        setNewAdmin({ name: '', email: '', password: '' });
+        toast.success('Agent created successfully!', { position: "top-right" });
       }
     } catch (error) {
-      console.error('Error creating agent', error);
+      toast.error("Failed to create a agent")
+      console.error('Error creating admin:', error);
     }
   };
 
-  // Handle admin deletion
+  // Delete Admin
   const handleDeleteAdmin = async (id: number) => {
-    const isConfirmed = window.confirm('Are you sure you want to delete this admin?');
+    const isConfirmed = window.confirm('Are you sure you want to delete this agent?');
     if (!isConfirmed) return;
 
     try {
       const response = await axios.delete(`http://localhost:3000/admins/${id}`);
       if (response.status === 200) {
-        setAdmins(admins.filter((admin) => admin.id !== id));
+        setAdmins((prevAdmins) => prevAdmins.filter((admin) => admin.id !== id));
+        toast.success('Agent deleted successfully!', { position: "top-right" });
       }
     } catch (error) {
-      console.error('Error deleting admin:', error);
+      console.error('Error deleting agent:', error);
+      toast.error("failed to delete agent",{position:"top-right"})
     }
   };
 
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Silverest Agent Management</h1>
-      <br></br>
-      <br></br>
 
       {/* Approved Agents Section */}
       <section className="mb-8">
@@ -126,76 +133,74 @@ export default function AgentManagement() {
                   <td className="border p-2">{agent.firstname}</td>
                   <td className="border p-2">{agent.lastname}</td>
                   <td className="border p-2">{agent.email}</td>
-                  
                   <td className="border p-2">{agent.phonenumber}</td>
                   <td className="border p-2">{agent.ResdencialArea}</td>
                   <td className="border p-2">{agent.professionalBackground}</td>
                 </tr>
               ))
             ) : (
-                <tr>
-                <td colSpan={8} className="text-center p-4">
-                  <p className="text-red-500 px-4 py-2">No approved agents found.</p>
-                </td>
+              <tr>
+                <td colSpan={8} className="text-center p-4 text-red-500">No approved agents found.</td>
               </tr>
-              
             )}
           </tbody>
         </table>
       </section>
 
+      <br></br>
+
+<br></br>
+
       {/* Admin Management Section */}
       <section>
-   
-        <br></br>
+  
+
+        {/* Add Admin Form */}
+        <div className="mb-4">
+          <h3 className="text-lg font-semibold mb-2">Create New Agent Account</h3>
+          <div className="flex flex-col space-y-4">
+            <input
+              type="text"
+              placeholder="Name"
+              className="border p-2 rounded w-full"
+              value={newAdmin.name}
+              onChange={(e) => setNewAdmin({ ...newAdmin, name: e.target.value })}
+            />
+            <input
+              type="email"
+              placeholder="Email"
+              className="border p-2 rounded w-full"
+              value={newAdmin.email}
+              onChange={(e) => setNewAdmin({ ...newAdmin, email: e.target.value })}
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              className="border p-2 rounded w-full"
+              value={newAdmin.password}
+              onChange={(e) => setNewAdmin({ ...newAdmin, password: e.target.value })}
+            />
+            <button
+              onClick={handleCreateAdmin}
+              className="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-800 transition"
+            >
+              Create Account
+            </button>
+          </div>
+        </div>
+
         <br></br>
 
-     {/* Add Admin Form */}
-{/* Add Admin Form */}
-<div className="mb-4">
-  <h3 className="text-lg font-semibold">Create New Agents Account</h3>
-  <div className="flex flex-col space-y-4 mt-4">
-    <input
-      type="text"
-      placeholder="create username"
-      className="border p-2 rounded w-full"
-      value={newAdmin.name}
-      onChange={(e) => setNewAdmin({ ...newAdmin, name: e.target.value })}
-    />
-    <input
-      type="email"
-      placeholder="Email Address"
-      className="border p-2 rounded w-full"
-      value={newAdmin.email}
-      onChange={(e) => setNewAdmin({ ...newAdmin, email: e.target.value })}
-    />
-    <input
-      type="password"
-      placeholder="create Password"
-      className="border p-2 rounded w-full"
-      onChange={(e) => setNewAdmin({ ...newAdmin, password: e.target.value })}
-    />
-    <button
-      onClick={handleCreateAdmin}
-      className="bg-green-700 text-white px-4 py-2 rounded hover:bg-orange-600 transition"
-    >
-      Create Account
-    </button>
-  </div>
-</div>
-
-<br></br>
-<br></br>
+        <br></br>
 
         {/* View Admins */}
-        <h3 className="text-lg font-semibold">Current Agents</h3>
+        <h3 className="text-lg font-semibold mb-2">Current Agents</h3>
         <table className="min-w-full bg-white border border-gray-300">
           <thead>
             <tr>
               <th className="border p-2">ID</th>
               <th className="border p-2">Name</th>
               <th className="border p-2">Email</th>
-              <th className="border p-2">password</th>
               <th className="border p-2">Actions</th>
             </tr>
           </thead>
@@ -206,7 +211,6 @@ export default function AgentManagement() {
                   <td className="border p-2">{admin.id}</td>
                   <td className="border p-2">{admin.name}</td>
                   <td className="border p-2">{admin.email}</td>
-                  <td className="border p-2">{admin.password}</td>
                   <td className="border p-2">
                     <button
                       onClick={() => handleDeleteAdmin(admin.id)}
@@ -218,12 +222,9 @@ export default function AgentManagement() {
                 </tr>
               ))
             ) : (
-                <tr>
-                <td colSpan={8} className="text-center p-4">
-                  <p className="text-red-500 px-4 py-2">No  agents found.</p>
-                </td>
+              <tr>
+                <td colSpan={4} className="text-center p-4 text-red-500">No agents found.</td>
               </tr>
-              
             )}
           </tbody>
         </table>
