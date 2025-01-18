@@ -27,7 +27,7 @@ const AboutUs = () => {
         {/* Right Section: Image */}
         <div>
           <Image
-            src="/images/about-us.jpg" // Replace with your own image path
+            src="https://isograft.com/bh/Kasanda%20Boarding%20House.jpg" // Replace with your own image path
             alt="About Us"
             width={600}
             height={400}

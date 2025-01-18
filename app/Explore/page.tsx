@@ -5,20 +5,21 @@ import { SearchIcon } from '@heroicons/react/outline';
 
 interface Property {
   id: string;
-  houseName: string;
+  HouseName: string;
   image: string;
-  location: string;
-  price: string;
-  roomType: string;
-  bookingFee: string;
-  genderCategory: string;
+  Location: string;
+  Price: number;
+  RoomNumber: number;
+  RoomType: string;
+  BookingFee: number;
+  GenderCategory: string;
   maxPeople: number;
-  status: string;
+  Status: string;
 }
 
 type FilterCriteria = {
   location: string;
-  price: string;
+  price: number;
   name: string;
   searchBy: 'location' | 'price' | 'name';
 };
@@ -29,7 +30,7 @@ const Explore = () => {
   const [error, setError] = useState<string | null>(null);
   const [filters, setFilters] = useState<FilterCriteria>({
     location: '',
-    price: '',
+    price: 0,
     name: '',
     searchBy: 'location',
   });
@@ -152,16 +153,45 @@ const Explore = () => {
                     alt={`Property ${explore.id}`}
                     className="w-full h-[200px] object-cover mb-4"
                   />
-                  <h3 className="text-xl font-bold">{explore.houseName}</h3>
-                  <p>{explore.roomType}</p>
-                  <p className="text-lg font-semibold">{`Price: ZK${explore.price}`}</p>
-                  <p>{`Name: ${explore.houseName}`}</p>
-                  <p>{`Booking Fee: ZK${explore.bookingFee}`}</p>
-                  <p>{`Gender Category: ${explore.genderCategory}`}</p>
-                  <p>{`Max People: ${explore.maxPeople}`}</p>
-                  <p className={`font-bold ${explore.status === 'available' ? 'text-green-500' : 'text-red-500'}`}>
-                    {explore.status === 'available' ? 'Available' : 'Booked'}
+                  <h3 className="text-xl font-bold">{explore.HouseName}</h3>
+                  <br />
+                  <p>
+                    <span className="text-black font-bold">RoomType: </span>
+                    {explore.RoomType}
                   </p>
+                  <p className="text-lg ">
+                    <span className="text-black font-bold">Price: </span>
+                    ZK {explore.Price}
+                  </p>
+                  <p>
+                    <span className="text-black font-bold">RoomNumber: </span>
+                    {explore.RoomNumber}
+                  </p>
+                  <p>
+                    <span className="text-black font-bold">Booking Fee: </span>
+                    <span className="text-red-600 font-bold" >  ZK {explore.BookingFee}</span>
+                  </p>
+                  <p>
+                    <span className="text-black font-bold">Gender Category: </span>
+                          {explore.GenderCategory}
+                  </p>
+                  <p>
+                    <span className="text-black font-bold">Max People: </span>
+                    {explore.maxPeople}
+                  </p>
+                  <p>
+                    <span className="text-black font-bold">Location: </span>
+                    {explore.Location}
+                  </p>
+
+                  <p>
+                    <span className="text-black font-bold">Status: </span>
+                    <span className={`${explore.Status?.toLowerCase() === 'available' ? 'text-green-500 font-bold' : 'text-red-500 font-bold'}`}>
+                      {explore.Status}
+                    </span>
+                  </p>
+
+
                   <div className="flex justify-center items-center mt-4">
                     <a
                       href={`/property/${explore.id}`}
@@ -173,7 +203,7 @@ const Explore = () => {
                 </div>
               ))
             ) : (
-              <p className="text-white">No properties found.</p>
+              <p className="text-black">No boardinghouses found.</p>
             )}
           </div>
         </div>

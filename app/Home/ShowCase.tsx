@@ -5,26 +5,28 @@ import Image from "next/image";
 
 const Services = () => {
   const services = [
-    {
-      title: "Affordable Housing",
-      description:
-        "Find budget-friendly accommodations that meet your needs without compromising on comfort.",
-      image: "/images/affordable-housing.jpg",
-    },
-    {
-      title: "Proximity to Campus",
-      description:
-        "Enjoy housing options located within walking distance or a short commute to campus.",
-      image: "",
-    },
-    {
-      title: "Secure Environment",
-      description:
-        "Stay safe with 24/7 security and secure access to all accommodations.",
-      image: "/images/secure-environment.jpg",
-    },
-   
-  ];
+
+      {
+        title: "Affordable Housing",
+        description:
+          "Find budget-friendly accommodations that meet your needs without compromising on comfort.",
+        image: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/506088692.jpg?k=0e857d5005839a4d7eb2fc77110dab05ad82b84baad7d5e0fcfdbcce711a92f8&o=&hp=1", // Example placeholder image
+      },
+      {
+        title: "Proximity to Campus",
+        description:
+          "Enjoy housing options located within walking distance or a short commute to campus.",
+        image: "https://real-estate-zambia.beforward.jp/wp-content/uploads/2023/11/s4-10.jpg", // Replace with a valid online URL
+      },
+      {
+        title: "Secure Environment",
+        description:
+          "Stay safe with 24/7 security and secure access to all accommodations.",
+        image: "https://isograft.com/bh/Kasanda%20Boarding%20House.jpg", // Example placeholder image
+      },
+    ];
+    
+  
 
   return (
     <section className="py-16 bg-gray-100">

@@ -50,7 +50,7 @@ const BlogSection = () => {
           {loading && <p className="text-gray-600 text-center col-span-full">Loading...</p>}
           {error && <p className="text-red-500 text-center col-span-full">{error}</p>}
           {blogs.length === 0 && !error && !loading && (
-            <p className="text-gray-600 text-center col-span-full">No blogs available at the moment.</p>
+            <p className="text-red-600 text-center col-span-full">No blogs available at the moment.</p>
           )}
           {blogs.map((blog, index) => (
             <div key={index} className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
