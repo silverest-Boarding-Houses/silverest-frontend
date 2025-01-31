@@ -1,5 +1,5 @@
-
 import { FaFacebook, FaTwitter, FaLinkedin } from "react-icons/fa"; // Import social media icons
+import Image from 'next/image'; // Import Image component
 
 export default function TopAgents() {
   const agents = [
@@ -43,10 +43,12 @@ export default function TopAgents() {
               className="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center text-center hover:shadow-xl transition-shadow duration-300"
             >
               <div className="relative w-full h-56 mb-4 overflow-hidden rounded-lg">
-                <img
+                <Image
                   className="w-full h-full object-cover"
                   src={agent.imageUrl || '/default-image.jpg'}
                   alt={agent.name}
+                  width={500} // Customize width based on your design
+                  height={400} // Customize height based on your design
                 />
               </div>
               <h3 className="text-lg font-medium text-gray-900">{agent.name}</h3>

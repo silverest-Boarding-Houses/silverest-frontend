@@ -8,7 +8,7 @@ const Posts = () => {
   const [houseName, setHouseName] = useState('');
   const [image, setImage] = useState('');
   const [roomType, setRoomType] = useState('');
-  const[Location,setLocation]= useState('')
+  const [Location, setLocation] = useState('');
   const [genderCategory, setGenderCategory] = useState('');
   const [roomNumber, setRoomNumber] = useState('');
   const [price, setPrice] = useState('');
@@ -30,7 +30,7 @@ const Posts = () => {
           HouseName: houseName,
           image,
           RoomType: roomType,
-          Location:Location,
+          Location,
           GenderCategory: genderCategory,
           RoomNumber: roomNumber,
           Price: parseFloat(price),
@@ -49,7 +49,7 @@ const Posts = () => {
       setHouseName('');
       setImage('');
       setRoomType('');
-      setLocation('')
+      setLocation('');
       setGenderCategory('');
       setRoomNumber('');
       setPrice('');
@@ -57,7 +57,7 @@ const Posts = () => {
       setBookingFee('');
       setLandlordPhoneNumber('');
       setStatus('');
-    } catch (error) {
+    } catch {
       toast.error('Error posting property. Please try again.');
     }
   };
@@ -101,8 +101,8 @@ const Posts = () => {
               required
             />
           </div>
-        
-            <div className="mb-4">
+
+          <div className="mb-4">
             <label htmlFor="roomType" className="block text-gray-700">Room Type</label>
             <select
               id="roomType"

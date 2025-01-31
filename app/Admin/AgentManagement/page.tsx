@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; // Import styles for Toastify
-
+import Image from 'next/image'; // Import Image for optimization
 
 interface Agent {
   id: number;
@@ -50,8 +50,7 @@ export default function AgentManagement() {
         setAdmins(response.data);
       } catch (error) {
         console.error('Error fetching agent:', error);
-        toast.error("error fetching agent",{position:'top-right'})
-        // 
+        toast.error("Error fetching agents", { position: 'top-right' });
       }
     };
     fetchAdmins();
@@ -60,8 +59,7 @@ export default function AgentManagement() {
   // Create Admin
   const handleCreateAdmin = async () => {
     if (!newAdmin.name || !newAdmin.email || !newAdmin.password) {
-      toast.warn("All fields are required",{position:'top-right'})
-    
+      toast.warn("All fields are required", { position: 'top-right' });
       return;
     }
     try {
@@ -72,7 +70,7 @@ export default function AgentManagement() {
         toast.success('Agent created successfully!', { position: "top-right" });
       }
     } catch (error) {
-      toast.error("Failed to create a agent")
+      toast.error("Failed to create agent", { position: "top-right" });
       console.error('Error creating admin:', error);
     }
   };
@@ -90,12 +88,13 @@ export default function AgentManagement() {
       }
     } catch (error) {
       console.error('Error deleting agent:', error);
-      toast.error("failed to delete agent",{position:"top-right"})
+      toast.error("Failed to delete agent", { position: "top-right" });
     }
   };
 
   return (
     <div className="container mx-auto p-4">
+      <ToastContainer /> {/* Add ToastContainer here for toast notifications */}
       <h1 className="text-2xl font-bold mb-4">Silverest Agent Management</h1>
 
       {/* Approved Agents Section */}
@@ -121,10 +120,12 @@ export default function AgentManagement() {
                   <td className="border p-2">{agent.id}</td>
                   <td className="border p-2">
                     {agent.profileImage ? (
-                      <img
+                      <Image
                         src={`http://localhost:3000/uploads/agents/${agent.profileImage}`}
                         alt="Profile"
-                        className="w-16 h-16 object-cover rounded-full"
+                        width={64} // Set width
+                        height={64} // Set height
+                        className="object-cover rounded-full"
                       />
                     ) : (
                       'No Image'
@@ -149,11 +150,10 @@ export default function AgentManagement() {
 
       <br></br>
 
-<br></br>
+      <br></br>
 
       {/* Admin Management Section */}
       <section>
-  
 
         {/* Add Admin Form */}
         <div className="mb-4">

@@ -34,14 +34,7 @@ export default function AdminActions() {
           ZK{totalAmount}
         </p>
       </div>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-
-      <br></br>
-
+      <br /><br /><br /><br /><br /><br />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-7xl px-4">
         {/* Original cards */}
@@ -51,7 +44,7 @@ export default function AdminActions() {
           </div>
           <h3 className="text-lg font-semibold mb-2">Post a House</h3>
           <p className="text-sm text-gray-700 mb-4">
-            Easily add new houses you have found to your listing by filling out a simple form the houses will appear to your listing.
+            Easily add new houses you&apos;ve found to your listing by filling out a simple form. The houses will appear in your listing.
           </p>
           <a href="/Admin/Posts">
             <button className="bg-green-700 text-white px-3 py-1 rounded-md hover:bg-orange-600 transition">
@@ -64,13 +57,13 @@ export default function AdminActions() {
           <div className="flex justify-center mb-2">
             <ClipboardListIcon className="h-12 w-12 text-green-600" />
           </div>
-          <h3 className="text-lg font-semibold mb-2">View Today's Booking</h3>
+          <h3 className="text-lg font-semibold mb-2">View Today&apos;s Booking</h3>
           <p className="text-sm text-gray-700 mb-4">
             View who has booked a house today. This feature gives you real-time bookings for the current day.
           </p>
           <a href="/Admin/Bookings">
             <button className="bg-green-600 text-white px-3 py-1 rounded-md hover:bg-orange-600 transition">
-              View Todays Booking
+              View Today&apos;s Booking
             </button>
           </a>
         </div>
@@ -81,7 +74,7 @@ export default function AdminActions() {
           </div>
           <h3 className="text-lg font-semibold mb-2">Post News</h3>
           <p className="text-sm text-gray-700 mb-4">
-            Share the latest news and updates with your audience tell them whats going on,new hostels,new prices etc.
+            Share the latest news and updates with your audience. Tell them what&apos;s going on, new hostels, new prices, etc.
           </p>
           <a href="/Admin/News">
             <button className="bg-green-700 text-white px-3 py-1 rounded-md hover:bg-orange-600 transition">
@@ -96,7 +89,8 @@ export default function AdminActions() {
           </div>
           <h3 className="text-lg font-semibold mb-2">Delete a House</h3>
           <p className="text-sm text-gray-700 mb-4">
-            You can remove a house by deleting a paticular booking associated with that house first then Remove a house from your listing   </p>
+            You can remove a house by deleting a particular booking associated with that house first, then remove a house from your listing.
+          </p>
           <a href="/Admin/DeleteHostel">
             <button className="bg-red-700 text-white px-3 py-1 rounded-md hover:bg-orange-600 transition">
               Delete House Now
@@ -105,22 +99,20 @@ export default function AdminActions() {
         </div>
 
         {/* Additional cards */}
-      
         <div className="bg-white shadow-lg rounded-lg p-4 text-center">
           <div className="flex justify-center mb-2">
             <HomeIcon className="h-12 w-12 text-green-600" />
           </div>
           <h3 className="text-lg font-semibold mb-2">View All Houses</h3>
           <p className="text-sm text-gray-700 mb-4">
-            this section you can view  the available houses in your website you can also search using a house name.
+            In this section, you can view the available houses on your website. You can also search using a house name.
           </p>
           <a href="/Admin/AllHouses">
             <button className="bg-green-700 text-white px-3 py-1 rounded-md hover:bg-orange-600 transition">
-              View All House Now
+              View All Houses Now
             </button>
           </a>
         </div>
-
 
         <div className="bg-white shadow-lg rounded-lg p-4 text-center">
           <div className="flex justify-center mb-2">
@@ -128,7 +120,7 @@ export default function AdminActions() {
           </div>
           <h3 className="text-lg font-semibold mb-2">View Booking History</h3>
           <p className="text-sm text-gray-700 mb-4">
-            select booking History using date or search using booking number to view a particular booking
+            Select booking history using a date or search using a booking number to view a particular booking.
           </p>
           <a href="/Admin/History">
             <button className="bg-green-700 text-white px-3 py-1 rounded-md hover:bg-orange-600 transition">
@@ -137,15 +129,13 @@ export default function AdminActions() {
           </a>
         </div>
 
-
-
         <div className="bg-white shadow-lg rounded-lg p-4 text-center">
           <div className="flex justify-center mb-2">
             <DocumentAddIcon className="h-12 w-12 text-green-600" />
           </div>
           <h3 className="text-lg font-semibold mb-2">Agent Application Forms</h3>
           <p className="text-sm text-gray-700 mb-4">
-            new application forms for agent will be found here check who want to be your agent and work together.
+            New application forms for agents will be found here. Check who wants to be your agent and work together.
           </p>
           <a href="/Admin/Applications">
             <button className="bg-green-700 text-white px-3 py-1 rounded-md hover:bg-orange-600 transition">
@@ -154,14 +144,13 @@ export default function AdminActions() {
           </a>
         </div>
 
-
         <div className="bg-white shadow-lg rounded-lg p-4 text-center">
           <div className="flex justify-center mb-2">
             <ClipboardListIcon className="h-12 w-12 text-red-600" />
           </div>
           <h3 className="text-lg font-semibold mb-2">Delete Booking</h3>
           <p className="text-sm text-gray-700 mb-4">
-            Remove a booking from your bookings first inorder to delete a house since a booking rely on house .
+            Remove a booking from your bookings first in order to delete a house, since a booking relies on the house.
           </p>
           <a href="/Admin/DeleteBooking">
             <button className="bg-red-700 text-white px-3 py-1 rounded-md hover:bg-orange-600 transition">
@@ -169,7 +158,6 @@ export default function AdminActions() {
             </button>
           </a>
         </div>
-
 
       </div>
     </div>

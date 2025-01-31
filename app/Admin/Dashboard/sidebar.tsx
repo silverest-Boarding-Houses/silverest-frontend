@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { HomeIcon, UsersIcon, CogIcon, LogoutIcon } from '@heroicons/react/outline';
 import { FaMoneyBillWave } from 'react-icons/fa';
 import axios from 'axios';
+import Image from 'next/image'; // Import Next.js Image component
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -37,15 +38,16 @@ const Sidebar = () => {
       } catch (error) {
         console.error('Error fetching user profile:', error);
         setUser({
-          ...user,
           username: 'Error loading username',
           email: 'Error loading email',
+          profileImage: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png', // Default profile image
+          status: 'Active',
         });
       }
     };
 
     fetchUserProfile();
-  }, []);
+  }, []); // Empty dependency array to only run this effect once
 
   return (
     <div className={`flex h-screen ${isOpen ? 'w-64' : 'w-20'} md:w-64 transition-width duration-300 bg-gray-800 text-white`}>
@@ -54,10 +56,12 @@ const Sidebar = () => {
         {/* Profile Details Box */}
         <div className="p-4 bg-gray-900 border-b border-gray-700">
           <div className="bg-gray-800 p-4 rounded-lg shadow-md">
-            <img
+            <Image
               src={user.profileImage}
               alt="Profile"
-              className="w-16 h-16 rounded-full mx-auto object-cover"
+              width={64} // Adjust the width and height as needed
+              height={64}
+              className="rounded-full mx-auto object-cover"
             />
             <h2 className="mt-4 text-center text-lg font-semibold">{user.username}</h2>
             <p className="text-center text-sm text-gray-400">{user.email}</p>

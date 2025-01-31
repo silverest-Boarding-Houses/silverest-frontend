@@ -1,6 +1,8 @@
+
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import Image from 'next/image';  // Import Image component from next/image
 
 interface Hostel {
   id: string;
@@ -53,9 +55,11 @@ const HostelListing = () => {
         {hostels.length > 0 ? (
           hostels.map((hostel) => (
             <div key={hostel.id} className="bg-white rounded-lg shadow-md overflow-hidden">
-              <img
-                src={hostel.image}
+              <Image
+                src={hostel.image} // Use Image component
                 alt={hostel.name}
+                width={500}  // Set a fixed width for optimization
+                height={300} // Set a fixed height for optimization
                 className="h-48 w-full object-cover"
               />
               <div className="p-4">

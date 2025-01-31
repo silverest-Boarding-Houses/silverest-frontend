@@ -1,6 +1,8 @@
-'use client'
-import axios from "axios";
-import { useEffect, useState } from "react";
+'use client';
+
+import axios from 'axios';
+import { useState } from 'react';
+import Image from 'next/image'; // Import Image for optimization
 
 export default function Applicant() {
   const [applicantData, setApplicantData] = useState({
@@ -14,8 +16,6 @@ export default function Applicant() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [applicants, setApplicants] = useState([]);
-  const [error, setError] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setApplicantData({
@@ -62,36 +62,13 @@ export default function Applicant() {
       });
       setSelectedFile(null);
       setImagePreview(null);
-      fetchApplicants(); // Refresh the list of applicants
     } catch (error) {
       alert('There was an error submitting your application');
+      console.error(error); // Log the error for debugging
     } finally {
       setIsLoading(false);
     }
   };
-
-  const fetchApplicants = async () => {
-    try {
-      const response = await axios.get('http://localhost:3000/agents');
-      setApplicants(response.data);
-    } catch (error) {
-      setError('Failed to fetch applicants');
-    }
-  };
-
-  const handleDelete = async (id: string) => {
-    try {
-      await axios.delete(`http://localhost:3000/agents/${id}`);
-      alert('Applicant deleted successfully');
-      fetchApplicants(); // Refresh the list of applicants
-    } catch (error) {
-      alert('Failed to delete the applicant');
-    }
-  };
-
-  useEffect(() => {
-    fetchApplicants();
-  }, []);
 
   return (
     <div className="flex flex-col items-center min-h-screen bg-gray-100 py-8">
@@ -175,10 +152,12 @@ export default function Applicant() {
               required
             />
             {imagePreview && (
-              <img
+              <Image
                 src={imagePreview}
                 alt="Preview"
-                className="mt-4 w-32 h-32 object-cover rounded-lg border border-gray-300"
+                width={128} 
+                height={128} 
+                className="mt-4 object-cover rounded-lg border border-gray-300"
               />
             )}
           </div>
@@ -191,8 +170,6 @@ export default function Applicant() {
           </button>
         </form>
       </div>
-
- 
     </div>
   );
 }

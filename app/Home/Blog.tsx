@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 
 // Define the interface for a blog
 interface Blog {
@@ -54,9 +55,11 @@ const BlogSection = () => {
           )}
           {blogs.map((blog, index) => (
             <div key={index} className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <img
+              <Image
                 src={blog.image}
                 alt={blog.content}
+                width={500} // You can specify a width and height here
+                height={300} // Customize based on your needs
                 className="rounded-lg mb-4 w-full h-48 object-cover"
               />
               <h3 className="text-xl font-semibold text-gray-800 mb-2">{blog.title}</h3>

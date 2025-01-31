@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React, { useState } from 'react';
 import axios from 'axios';
@@ -21,6 +21,7 @@ const LoginForm = () => {
       localStorage.setItem('access_token', access_token);
       router.push('/Admin'); 
     } catch (err) {
+      console.error('Login error:', err); // Log the error for debugging
       setError('Invalid username or password');
     }
   };

@@ -1,7 +1,7 @@
 import React from "react";
 import ShieldCheckIcon from '@heroicons/react/solid/ShieldCheckIcon';
 import BriefcaseIcon from '@heroicons/react/solid/BriefcaseIcon';
-import ChartBarIcon from '@heroicons/react/solid/ChartBarIcon';
+
 
 
 const Values = [

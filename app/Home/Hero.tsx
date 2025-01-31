@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-
 import Link from "next/link";
+import Image from "next/image"; // Import Image component from next/image
 
 const Hero = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,19 +20,16 @@ const Hero = () => {
       <header className="relative z-20 flex items-center justify-between px-6 py-4 bg-black/50 backdrop-blur-lg shadow-md">
         {/* Logo */}
         <div>
-      <Link href="/" passHref>
-       
-          <img
-            src="https://static.vecteezy.com/system/resources/thumbnails/000/425/085/small_2x/Multimedia__2814_29.jpg"
-            alt="Image example"
-            width={30}
-            height={35}
-            className="rounded-full"
-          />
-      
-      </Link>
-    </div>
-
+          <Link href="/" passHref>
+            <Image
+              src="https://static.vecteezy.com/system/resources/thumbnails/000/425/085/small_2x/Multimedia__2814_29.jpg"
+              alt="Image example"
+              width={30}
+              height={35}
+              className="rounded-full"
+            />
+          </Link>
+        </div>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex flex-grow justify-center space-x-8 text-white font-semibold">
@@ -151,35 +148,24 @@ const Hero = () => {
             >
               Contact Us
             </a>
-            <a
-              href="/Admin/Login"
-              className="block py-2 text-lg rounded-md border border-white px-3 text-center text-white hover:bg-gray-800"
-            >
-              Admin
-            </a>
           </nav>
         </div>
       )}
 
-      {/* Hero Section */}
-      <div className="relative z-10 text-center mt-16">
-        <h1 className="text-white text-4xl sm:text-5xl font-bold leading-tight">
-          Silverest Boarding Houses
-          <br />
-          <span className="mt-4 block">Accommodation🇿🇲</span>
-        </h1>
-        <p className="text-white text-lg mt-4">
-          Discover the perfect off-campus accommodation that suits your needs
-          and lifestyle.
-        </p>
-
-        <div className="mt-8 flex justify-center space-x-4">
-          <a
-            href="/Explore"
-            className="inline-block w-40 py-3 bg-green-700 text-white font-semibold rounded-md hover:bg-orange-600 transition-all"
-          >
-            Explore Houses
-          </a>
+      {/* Hero Content */}
+      <div className="absolute inset-0 flex items-center justify-center z-10 text-center text-white px-6">
+        <div>
+          <h1 className="text-4xl font-extrabold sm:text-5xl">
+            Find Your Dream Home with Us
+          </h1>
+          <p className="mt-4 text-lg">
+            Explore top agents and find the best properties with us.
+          </p>
+          <Link href="/Explore">
+            <a className="mt-6 inline-block bg-green-500 text-white px-6 py-2 rounded-full text-lg font-semibold hover:bg-green-600 transition-all duration-300">
+              Get Started
+            </a>
+          </Link>
         </div>
       </div>
     </div>

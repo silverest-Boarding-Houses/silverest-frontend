@@ -1,7 +1,7 @@
-'use client';
-
-import React, { useEffect, useState } from "react";
+'use client'
+import React, { useState, useEffect, useCallback } from "react";
 import { SearchIcon } from '@heroicons/react/outline';
+import Image from 'next/image'; 
 
 interface Property {
   id: string;
@@ -27,14 +27,14 @@ type FilterCriteria = {
 const Explore = () => {
   const [exploreProps, setExploreProps] = useState<Property[]>([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);  // Error state
+
   const [filters, setFilters] = useState<FilterCriteria>({
     location: '',
     price: 0,
     name: '',
     searchBy: 'location',
   });
-  const [page, setPage] = useState(1);
 
   const API_BASE_URL = "http://localhost:3000/boardinghouses";
 
@@ -51,9 +51,8 @@ const Explore = () => {
     }
   };
 
-  const fetchProperties = async () => {
+  const fetchProperties = useCallback(async () => {
     setLoading(true);
-    setError(null);
     let url = `${API_BASE_URL}/allhouses`;
 
     try {
@@ -69,16 +68,17 @@ const Explore = () => {
       if (!response.ok) throw new Error('Failed to fetch properties.');
       const data = await response.json();
       setExploreProps(data);
-    } catch (e) {
-      setError
+    } catch (error) {
+      setError("Failed to load properties. Please try again later.");
+      console.error("Failed to fetch", error);
     } finally {
       setLoading(false);
     }
-  };
+  }, [filters]);
 
   useEffect(() => {
     fetchProperties();
-  }, [filters]);
+  }, [filters, fetchProperties]);
 
   const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -96,16 +96,6 @@ const Explore = () => {
   };
 
   if (loading) return <p>Loading...</p>;
-  if (error) {
-    return (
-      <div>
-        <p className="text-red-500">{error}</p>
-        <button onClick={fetchProperties} className="p-2 bg-green-500 text-white rounded">
-          Retry
-        </button>
-      </div>
-    );
-  }
 
   return (
     <div className="h-full w-full bg-green-600">
@@ -144,13 +134,18 @@ const Explore = () => {
             </button>
           </div>
 
+          {/* Error message handling */}
+          {error && <p className="text-red-600 text-center">{error}</p>}
+
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {exploreProps.length > 0 ? (
               exploreProps.map((explore) => (
                 <div key={explore.id} className="p-4 border rounded shadow-lg bg-white">
-                  <img
+                  <Image
                     src={explore.image}
                     alt={`Property ${explore.id}`}
+                    width={500} // Set appropriate width
+                    height={200} // Set appropriate height
                     className="w-full h-[200px] object-cover mb-4"
                   />
                   <h3 className="text-xl font-bold">{explore.HouseName}</h3>
@@ -173,7 +168,7 @@ const Explore = () => {
                   </p>
                   <p>
                     <span className="text-black font-bold">Gender Category: </span>
-                          {explore.GenderCategory}
+                    {explore.GenderCategory}
                   </p>
                   <p>
                     <span className="text-black font-bold">Max People: </span>
@@ -191,7 +186,6 @@ const Explore = () => {
                     </span>
                   </p>
 
-
                   <div className="flex justify-center items-center mt-4">
                     <a
                       href={`/property/${explore.id}`}
@@ -203,7 +197,7 @@ const Explore = () => {
                 </div>
               ))
             ) : (
-              <p className="text-black">No boardinghouses found.</p>
+              <p className="text-red">No boardinghouses found.</p>
             )}
           </div>
         </div>

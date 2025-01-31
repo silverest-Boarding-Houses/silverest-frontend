@@ -22,7 +22,12 @@ const RegistrationForm = () => {
       // Redirect to login page after successful registration
       router.push('/Profile');
     } catch (err) {
-      setError('Failed to register');
+      console.error(err); // Log the error for debugging
+      setError('Failed to register'); // Optionally, you can use the error message here
+    
+    
+      
+
     }
   };
 

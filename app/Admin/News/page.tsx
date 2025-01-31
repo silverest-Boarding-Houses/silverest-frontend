@@ -1,13 +1,21 @@
 'use client';
 import React, { useEffect, useState } from "react";
 
+// Define the type for a news item
+interface NewsItem {
+  id: string;
+  image: string;
+  content: string;
+  date: string;
+}
+
 const News = () => {
   const [image, setImage] = useState('');
   const [content, setContent] = useState('');
   const [date, setDate] = useState('');
-  const [news, setNews] = useState([]);
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
+  const [news, setNews] = useState<NewsItem[]>([]); // Type the news state as an array of NewsItem
+  const [error, setError] = useState<string>(''); // Set error state type to string
+  const [success, setSuccess] = useState<string>(''); // Set success state type to string
 
   // Fetch existing news
   const fetchNews = async () => {
@@ -18,8 +26,13 @@ const News = () => {
       }
       const data = await response.json();
       setNews(data);
-    } catch (error: any) {
-      setError(error.message);
+    } catch (error: unknown) {
+      // Type the error correctly, assuming it's an instance of Error
+      if (error instanceof Error) {
+        setError(error.message);
+      } else {
+        setError('An unexpected error occurred');
+      }
     }
   };
 
@@ -55,8 +68,12 @@ const News = () => {
       setContent('');
       setDate('');
       fetchNews(); // Refresh the news list after posting
-    } catch (error: any) {
-      setError(error.message);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setError(error.message);
+      } else {
+        setError('An unexpected error occurred');
+      }
     }
   };
 
@@ -73,8 +90,12 @@ const News = () => {
 
       setSuccess('News deleted successfully!');
       fetchNews(); // Refresh the news list after deletion
-    } catch (error: any) {
-      setError(error.message);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setError(error.message);
+      } else {
+        setError('An unexpected error occurred');
+      }
     }
   };
 
@@ -138,7 +159,7 @@ const News = () => {
         <h2 className="text-2xl font-semibold text-center text-gray-700 mb-6">News List</h2>
         {news.length > 0 ? (
           <ul className="space-y-4">
-            {news.map((item: any) => (
+            {news.map((item) => (
               <li key={item.id} className="flex justify-between items-center p-4 bg-gray-100 rounded-md">
                 <div>
                   <p className="font-semibold text-gray-700">{item.content}</p>

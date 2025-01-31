@@ -2,32 +2,29 @@
 
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import Image from 'next/image';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; // Import styles for Toastify
-
 
 interface Admin {
   id: number;
   username: string;
   email: string;
-  password: string;
+  password?: string; // Optional to avoid exposing passwords in frontend
 }
 
 export default function AgentManagement() {
   const [admins, setAdmins] = useState<Admin[]>([]);
   const [newAdmin, setNewAdmin] = useState({ username: '', email: '', password: '' });
-  const [loading, setLoading] = useState(true);
 
   // Fetch admins from the API
   const fetchAdmins = async () => {
-    setLoading(true);
     try {
       const response = await axios.get('http://localhost:3000/auth');
       setAdmins(Array.isArray(response.data) ? response.data : []);
     } catch (error) {
       console.error('Error fetching admins:', error);
-    } finally {
-      setLoading(false);
+      toast.error('Failed to load admins.', { position: 'top-right' });
     }
   };
 
@@ -35,48 +32,48 @@ export default function AgentManagement() {
     fetchAdmins();
   }, []);
 
- // Handle admin creation
-const handleCreateAdmin = async () => {
+  // Handle admin creation
+  const handleCreateAdmin = async () => {
     if (!newAdmin.username || !newAdmin.email || !newAdmin.password) {
-      toast.warn('All fields are required.', { position: "top-right" });
+      toast.warn('All fields are required.', { position: 'top-right' });
       return;
     }
-  
+
     try {
       const response = await axios.post('http://localhost:3000/auth/register', newAdmin);
       if (response.status === 201) {
         setAdmins((prevAdmins) => [...prevAdmins, response.data]);
         setNewAdmin({ username: '', email: '', password: '' });
-        toast.success('Admin created successfully!', { position: "top-right" });
+        toast.success('Admin created successfully!', { position: 'top-right' });
       }
     } catch (error) {
       console.error('Error creating admin', error);
-      toast.error('Failed to create admin.', { position: "top-right" });
+      toast.error('Failed to create admin.', { position: 'top-right' });
     }
   };
-  
+
   // Handle admin deletion
   const handleDeleteAdmin = async (id: number) => {
-    const isConfirmed = window.confirm('Are you sure you want to delete this admin?');
-    if (!isConfirmed) return;
-  
+    if (!window.confirm('Are you sure you want to delete this admin?')) return;
+
     try {
       const response = await axios.delete(`http://localhost:3000/auth/${id}`);
       if (response.status === 200) {
         setAdmins((prevAdmins) => prevAdmins.filter((admin) => admin.id !== id));
-        toast.success('Admin deleted successfully!', { position: "top-right" });
+        toast.success('Admin deleted successfully!', { position: 'top-right' });
       }
     } catch (error) {
       console.error('Error deleting admin:', error);
-      toast.error('Failed to delete admin.', { position: "top-right" });
+      toast.error('Failed to delete admin.', { position: 'top-right' });
     }
   };
-  
+
   return (
     <div className="container mx-auto p-4">
-      <ToastContainer /> {/* Add this line */}
+      <ToastContainer /> {/* Ensure ToastContainer is present */}
+
       <h1 className="text-2xl font-bold mb-4">Silverest Admin Management</h1>
-  
+
       {/* Add Admin Form */}
       <div className="mb-4">
         <h3 className="text-lg font-semibold">Create New Admin Account</h3>
@@ -110,7 +107,7 @@ const handleCreateAdmin = async () => {
           </button>
         </div>
       </div>
-  
+
       {/* Admin List */}
       <div className="mb-4">
         <h3 className="text-lg font-semibold">Current Admins</h3>
@@ -134,7 +131,16 @@ const handleCreateAdmin = async () => {
               admins.map((admin) => (
                 <tr key={admin.id}>
                   <td className="border p-2">{admin.id}</td>
-                  <td className="border p-2">{admin.username}</td>
+                  <td className="border p-2 flex items-center space-x-2">
+                    <Image
+                      src="/avatar-placeholder.png"
+                      alt="Admin Avatar"
+                      width={30}
+                      height={30}
+                      className="rounded-full"
+                    />
+                    {admin.username}
+                  </td>
                   <td className="border p-2">{admin.email}</td>
                   <td className="border p-2">
                     <button
@@ -158,4 +164,4 @@ const handleCreateAdmin = async () => {
       </div>
     </div>
   );
-}  
+}

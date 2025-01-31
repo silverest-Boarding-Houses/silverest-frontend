@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Image from "next/image";
 
 interface Hostel {
   id: number;
@@ -77,14 +78,15 @@ export default function DeleteHostelPage() {
       {/* Hostel List */}
       <div className="space-y-4">
         {hostels.length === 0 ? (
-          <div className="text-center">No boardingHouses available.</div>
+          <div className="text-center">No boarding houses available.</div>
         ) : (
           hostels.map((hostel) => (
             <div key={hostel.id} className="bg-white p-6 rounded-lg shadow-md flex flex-col sm:flex-row sm:items-center">
-              <img
+              <Image
                 src={hostel.image}
                 alt={hostel.HouseName}
-                style={{ width: '300px', height: '300px' }}
+                width={300}
+                height={300}
                 className="object-cover mb-4 sm:mb-0 sm:mr-4 rounded-lg"
               />
               <div className="flex-grow">
@@ -95,7 +97,7 @@ export default function DeleteHostelPage() {
                 <p><strong>Room Number:</strong> {hostel.RoomNumber}</p>
                 <p><strong>Price:</strong> {hostel.Price} ZK</p>
                 <p><strong>Booking Fee:</strong> {hostel.BookingFee} ZK</p>
-                <p><strong>Landlord's Phone:</strong> {hostel.LandlordPhoneNumber}</p>
+                <p><strong>Landlord&apos;s Phone:</strong> {hostel.LandlordPhoneNumber}</p>
                 <p><strong>Status:</strong> {hostel.Status}</p>
                 <p><strong>Max People:</strong> {hostel.maxPeople}</p>
                 

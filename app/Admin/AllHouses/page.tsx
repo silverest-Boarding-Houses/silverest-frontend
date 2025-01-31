@@ -1,7 +1,8 @@
-"use client";
+'use client';
 
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Image from 'next/image'; // Import Image from next/image
 
 interface House {
   HouseName: string;
@@ -62,9 +63,12 @@ export default function AvailableHouses() {
             key={index}
             className="bg-white shadow-md rounded-lg overflow-hidden border border-gray-200"
           >
-            <img
+            {/* Replaced <img> with <Image /> component */}
+            <Image
               src={house.image}
               alt={house.HouseName}
+              width={500} // Set width as per your image's dimensions
+              height={300} // Set height as per your image's dimensions
               className="w-full h-48 object-cover"
             />
             <div className="p-4">
@@ -74,7 +78,6 @@ export default function AvailableHouses() {
               <p className="text-gray-600">
                 <strong>Location:</strong> {house.Location}
               </p>
-           
               <p className="text-gray-600">
                 <strong>Room Type:</strong> {house.RoomType}
               </p>

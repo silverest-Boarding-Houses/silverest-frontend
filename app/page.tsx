@@ -1,4 +1,4 @@
-import Image from "next/image";
+
 import Hero from "./Home/Hero";
 
 import Show from "./Home/ShowCase";

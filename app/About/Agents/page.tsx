@@ -1,9 +1,9 @@
 'use client';
 
-import Header from '@/app/Components/Admin.header';
-import Footer from '@/app/Components/Footer';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
+import Image from "next/image"; // Use Next.js Image component
 
+// Define the type for the agent
 interface Agent {
   id: number;
   firstname: string;
@@ -20,18 +20,22 @@ const AgentsPage: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
+  // Fetch the agents data when the component mounts
   useEffect(() => {
     const fetchAgents = async () => {
       try {
-        const response = await fetch('http://localhost:3000/agents/all');
+        const response = await fetch("http://localhost:3000/agents/all");
         if (!response.ok) {
-          throw new Error('Failed to fetch agents');
+          throw new Error("Failed to fetch agents");
         }
         const data = await response.json();
         setAgents(data);
         setLoading(false);
-      } catch (error) {
-        setError('Failed to load agents');
+      } catch (error: unknown) {  // Explicitly use 'unknown' type for error
+        if (error instanceof Error) {  // Type check to ensure proper error handling
+          setError("Failed to load agents");
+          console.error("Failed to load agents", error.message);
+        }
         setLoading(false);
       }
     };
@@ -58,10 +62,12 @@ const AgentsPage: React.FC = () => {
                 className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-4 bg-gray-50 rounded-lg shadow-sm hover:bg-gray-100"
               >
                 <div className="flex items-center space-x-4 sm:flex-row sm:space-x-6">
-                  <img
+                  <Image
                     src={agent.profileImage}
                     alt={`${agent.firstname} ${agent.lastname}`}
-                    className="w-16 h-16 rounded-full object-cover"
+                    width={64}
+                    height={64}
+                    className="rounded-full object-cover"
                   />
                   <div>
                     <h3 className="text-xl font-semibold text-blue-700">
@@ -85,10 +91,6 @@ const AgentsPage: React.FC = () => {
           </ul>
         </div>
       )}
-      <br />
-      <br />
-      {/* <br />
-      <Footer /> */}
     </div>
   );
 };

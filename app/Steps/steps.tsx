@@ -1,8 +1,6 @@
-import  {DocumentAddIcon, HomeIcon}   from '@heroicons/react/solid';
 
-import {CheckCircleIcon} from '@heroicons/react/solid';
-
-import  {UserGroupIcon}  from '@heroicons/react/solid';
+import { CheckCircleIcon, HomeIcon } from '@heroicons/react/solid';
+import { UserGroupIcon } from '@heroicons/react/solid';
 
 export default function ThreeSteps() {
   return (
@@ -15,11 +13,11 @@ export default function ThreeSteps() {
           How We Make It Happen
         </p>
         <p className="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
-          This is how you can find a boarding house and secure a room using our website 
+          This is how you can find a boarding house and secure a room using our website
         </p>
 
         <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-10">
-          {/* Step 1: Evaluate Property */}
+          {/* Step 1: Explore Boarding Houses */}
           <div className="bg-white shadow-lg p-6 rounded-lg">
             <div className="flex flex-col items-center">
               <div className="bg-green-500 text-white p-6 rounded-full">
@@ -29,7 +27,7 @@ export default function ThreeSteps() {
                 Explore Boarding Houses
               </h3>
               <p className="mt-2 text-base text-gray-500">
-              select boarding houses that match your preferences from the explore button and houses section on top menu
+                Select boarding houses that match your preferences from the explore button and houses section on the top menu
               </p>
             </div>
           </div>
@@ -38,13 +36,13 @@ export default function ThreeSteps() {
           <div className="bg-white shadow-lg p-6 rounded-lg">
             <div className="flex flex-col items-center">
               <div className="bg-green-500 text-white p-6 rounded-full">
-                <DocumentAddIcon  className="h-10 w-10" />
+                <UserGroupIcon className="h-10 w-10" /> {/* Added UserGroupIcon here */}
               </div>
               <h3 className="mt-5 text-lg leading-6 font-medium text-gray-900">
-                Book a Room
+                Meet Your Agent
               </h3>
               <p className="mt-2 text-base text-gray-500">
-                select a boarding house and click book now and fill in the form to secure a room
+                Select an agent to guide you through the booking process
               </p>
             </div>
           </div>
@@ -59,7 +57,7 @@ export default function ThreeSteps() {
                 Close The Deal
               </h3>
               <p className="mt-2 text-base text-gray-500">
-                upon booking you will receive a booking number which will be sent to your email and used for reference when physically visiting the boarding house
+                Upon booking, you will receive a booking number which will be sent to your email and used for reference when physically visiting the boarding house
               </p>
             </div>
           </div>

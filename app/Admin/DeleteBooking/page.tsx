@@ -1,7 +1,8 @@
-"use client";
+'use client';
 
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Image from "next/image"; // Import Image from next/image
 
 interface BoardingHouse {
   id: number;
@@ -31,7 +32,6 @@ interface Booking {
 
 export default function DeleteBookingPage() {
   const [bookings, setBookings] = useState<Booking[]>([]);
-  const [boardingHouses, setBoardingHouses] = useState<BoardingHouse[]>([]);
   const [errorMessage, setErrorMessage] = useState("");
 
   // Fetch all bookings
@@ -47,22 +47,6 @@ export default function DeleteBookingPage() {
     } catch (error) {
       console.error("Error fetching bookings:", error);
       setErrorMessage("Failed to fetch bookings.");
-    }
-  };
-
-  // Fetch all boarding houses
-  const fetchBoardingHouses = async () => {
-    try {
-      const response = await axios.get("http://localhost:3000/boardinghouses/allhouses");
-      console.log("Boarding Houses Data:", response.data); // Check if boarding houses are fetched correctly
-      if (response.data && Array.isArray(response.data)) {
-        setBoardingHouses(response.data);
-      } else {
-        setErrorMessage("Failed to fetch boarding houses.");
-      }
-    } catch (error) {
-      console.error("Error fetching boarding houses:", error);
-      setErrorMessage("Failed to fetch boarding houses.");
     }
   };
 
@@ -85,7 +69,6 @@ export default function DeleteBookingPage() {
   // Fetch data on component mount
   useEffect(() => {
     fetchBookings();
-    fetchBoardingHouses();
   }, []);
 
   return (
@@ -93,13 +76,13 @@ export default function DeleteBookingPage() {
       <h1 className="text-3xl font-bold text-center mb-6">Delete Bookings</h1>
       <p className="text-1xl font-bold text-center mb-6">(danger zone ⚠️)</p>
       <button
-          onClick={fetchBookings}
-          className="px-4 py-2 bg-green-700 text-white rounded hover:bg-orange-600 transition"
-        >
-          Refresh Data
-        </button>
-        <br></br>
-        <br></br>
+        onClick={fetchBookings}
+        className="px-4 py-2 bg-green-700 text-white rounded hover:bg-orange-600 transition"
+      >
+        Refresh Data
+      </button>
+      <br />
+      <br />
 
       {/* Error message */}
       {errorMessage && (
@@ -118,7 +101,10 @@ export default function DeleteBookingPage() {
             if (!boardingHouse) return null;
 
             return (
-              <div key={booking.id} className="bg-white p-6 rounded-lg shadow-md flex flex-col sm:flex-row sm:items-center">
+              <div
+                key={booking.id}
+                className="bg-white p-6 rounded-lg shadow-md flex flex-col sm:flex-row sm:items-center"
+              >
                 <div className="flex-grow">
                   <h3 className="text-xl font-semibold">Booking by: {booking.studentName}</h3>
                   <p><strong>Email:</strong> {booking.emailAddress}</p>
@@ -135,14 +121,15 @@ export default function DeleteBookingPage() {
                     <p><strong>Room Type:</strong> {boardingHouse.RoomType}</p>
                     <p><strong>Status:</strong> {boardingHouse.Status}</p>
                     <p><strong>Max People:</strong> {boardingHouse.maxPeople}</p>
-                    <img
+                    <Image
                       src={boardingHouse.image}
                       alt={boardingHouse.HouseName}
-                      style={{ width: "150px", height: "150px" }}
+                      width={150} // Set width and height for optimization
+                      height={150}
                       className="object-cover rounded-lg mt-2"
                     />
                   </div>
-                
+
                   <button
                     onClick={() => handleDeleteBooking(booking.id)}
                     className="mt-4 bg-red-500 text-white p-2 rounded hover:bg-red-600 transition"

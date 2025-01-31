@@ -22,7 +22,7 @@ const ContactUs: React.FC = () => {
         "HlMFIQVluZ-Bfo1qv" // Replace with your Public Key
       )
       .then(
-        (result) => {
+        () => {
           setIsSubmitting(false);
           setSuccessMessage("Your message has been sent successfully!");
           setErrorMessage("");
@@ -32,6 +32,7 @@ const ContactUs: React.FC = () => {
           setIsSubmitting(false);
           setErrorMessage("An error occurred. Please try again.");
           setSuccessMessage("");
+          console.error("Email send error:", error); // Log the error
         }
       );
   };
@@ -95,11 +96,9 @@ const ContactUs: React.FC = () => {
             {errorMessage && <p className="text-red-600 text-sm mt-2">{errorMessage}</p>}
           </form>
         </div>
-  
-
       </div>
-      <Footer></Footer>
-    
+
+      <Footer />
     </>
   );
 };

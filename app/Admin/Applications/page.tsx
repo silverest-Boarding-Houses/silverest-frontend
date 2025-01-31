@@ -2,6 +2,9 @@
 
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import Image from 'next/image';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; // Import styles for Toastify
 
 interface Agent {
   id: number;
@@ -31,29 +34,27 @@ export default function Applications() {
     fetchAgents();
   }, []);
 
-  
-
   const handleDelete = async (id: number) => {
-    const isConfirmed = window.confirm("Are you sure you want to delete this an agent?");
+    const isConfirmed = window.confirm('Are you sure you want to delete this agent?');
     if (!isConfirmed) return;
 
     try {
       const response = await axios.delete(`http://localhost:3000/agents/${id}`);
       if (response.status === 200) {
-        setAgents(agents.filter((Agent) => Agent.id !== id)); // Remove deleted hostel from the list
+        setAgents(agents.filter((Agent) => Agent.id !== id)); // Remove deleted agent from the list
+        toast.success('Agent deleted successfully');
       }
     } catch (error) {
-      console.error("Error deleting agent:", error);
-      setErrorMessage("Failed to delete agent");
+      console.error('Error deleting agent:', error);
+      toast.error('Failed to delete agent');
     }
   };
-
 
   const handleStatusUpdate = async (id: number, status: 'approved' | 'rejected') => {
     try {
       // Update the agent's status
       await axios.patch(`http://localhost:3000/agents/${id}/status`, { status });
-  
+
       // If the status is 'approved', add the agent to the admins list
       if (status === 'approved') {
         const agentToApprove = agents.find((agent) => agent.id === id);
@@ -64,18 +65,20 @@ export default function Applications() {
           });
         }
       }
-  
+
       // Update the UI
       setAgents((prevAgents) =>
         prevAgents.map((agent) =>
           agent.id === id ? { ...agent, status } : agent
         )
       );
+      toast.success(`Agent status updated to ${status}`);
     } catch (error) {
       console.error('Error updating agent status:', error);
+      toast.error('Failed to update agent status');
     }
   };
-  
+
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Agent Applications</h1>
@@ -102,10 +105,12 @@ export default function Applications() {
                 <td className="border p-2">{agent.id}</td>
                 <td className="border p-2">
                   {agent.profileImage ? (
-                    <img
+                    <Image
                       src={`http://localhost:3000/uploads/agents/${agent.profileImage}`}
                       alt="Profile"
                       className="w-16 h-16 object-cover rounded-full"
+                      width={64} // Width of the image
+                      height={64} // Height of the image
                     />
                   ) : (
                     'No Image'
@@ -136,10 +141,14 @@ export default function Applications() {
                     </>
                   )}
                 </td>
-                <td><button 
-                onClick={() => handleDelete(agent.id)}
-                
-                className='bg-red-700 text-white px-2 py-1 hover:bg-orange-600'>Delete</button></td>
+                <td>
+                  <button
+                    onClick={() => handleDelete(agent.id)}
+                    className="bg-red-700 text-white px-2 py-1 hover:bg-orange-600"
+                  >
+                    Delete
+                  </button>
+                </td>
               </tr>
             ))
           ) : (
@@ -151,10 +160,7 @@ export default function Applications() {
           )}
         </tbody>
       </table>
+      <ToastContainer /> {/* Add this line */}
     </div>
   );
 }
-function setErrorMessage(arg0: string) {
-  throw new Error('Function not implemented.');
-}
-

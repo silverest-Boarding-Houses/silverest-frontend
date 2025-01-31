@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Image from 'next/image'; // Import Image component from next/image
 
 const SettingsPage = () => {
   const [user, setUser] = useState({
@@ -197,10 +198,12 @@ const SettingsPage = () => {
             />
             {imagePreview && (
               <div className="mt-4">
-                <img
+                <Image
                   src={imagePreview}
                   alt="Profile Preview"
-                  className="w-24 h-24 rounded-full object-cover"
+                  width={96}   // Adjust the width as per your design
+                  height={96}  // Adjust the height as per your design
+                  className="rounded-full object-cover"
                 />
               </div>
             )}
