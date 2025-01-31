@@ -156,13 +156,13 @@ const Hero = () => {
       <div className="absolute inset-0 flex items-center justify-center z-10 text-center text-white px-6">
         <div>
           <h1 className="text-4xl font-extrabold sm:text-5xl">
-            Find Your Dream Home with Us
+            Silverest Boarding Houses Accomodation
           </h1>
           <p className="mt-4 text-lg">
-            Explore top agents and find the best properties with us.
+             find the best boarding houses at silverest in Lusaka with us .
           </p>
           <Link href="/Explore">
-            <a className="mt-6 inline-block bg-green-500 text-white px-6 py-2 rounded-full text-lg font-semibold hover:bg-green-600 transition-all duration-300">
+            <a className="mt-6 inline-block bg-green-700 text-white px-6 py-2 rounded-full text-lg font-semibold hover:bg-orange-600 transition-all duration-300">
               Get Started
             </a>
           </Link>
