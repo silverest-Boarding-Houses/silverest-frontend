@@ -14,10 +14,10 @@ const Footer = () => {
               <span className="absolute left-0 bottom-[-10px] w-12 h-[2px] bg-white"></span>
             </h4>
             <ul>
-              <li className="mb-2"><a href="#" className="hover:text-gray-300 transition-all duration-300 ease-in-out block">About Us</a></li>
+              <li className="mb-2"><a href="About" className="hover:text-gray-300 transition-all duration-300 ease-in-out block">About Us</a></li>
               <li className="mb-2"><a href="#" className="hover:text-gray-300 transition-all duration-300 ease-in-out block">Our Mission</a></li>
               <li className="mb-2"><a href="#" className="hover:text-gray-300 transition-all duration-300 ease-in-out block">Careers</a></li>
-              <li className="mb-2"><a href="#" className="hover:text-gray-300 transition-all duration-300 ease-in-out block">Contact Us</a></li>
+              <li className="mb-2"><a href="Contact" className="hover:text-gray-300 transition-all duration-300 ease-in-out block">Contact Us</a></li>
             </ul>
           </div>
 
@@ -28,9 +28,9 @@ const Footer = () => {
               <span className="absolute left-0 bottom-[-10px] w-12 h-[2px] bg-white"></span>
             </h4>
             <ul>
-              <li className="mb-2"><a href="#" className="hover:text-gray-300 transition-all duration-300 ease-in-out block">Explore Houses</a></li>
-              <li className="mb-2"><a href="#" className="hover:text-gray-300 transition-all duration-300 ease-in-out block">Book Houses</a></li>
-              <li className="mb-2"><a href="#" className="hover:text-gray-300 transition-all duration-300 ease-in-out block">Terms and conditions</a></li>
+              <li className="mb-2"><a href="/Explore" className="hover:text-gray-300 transition-all duration-300 ease-in-out block">Explore Houses</a></li>
+              <li className="mb-2"><a href="/Explore" className="hover:text-gray-300 transition-all duration-300 ease-in-out block">Book Houses</a></li>
+              <li className="mb-2"><a href="/Terms" className="hover:text-gray-300 transition-all duration-300 ease-in-out block">Terms and conditions</a></li>
             </ul>
           </div>
 
@@ -42,7 +42,7 @@ const Footer = () => {
             </h4>
             <ul>
               <li className="mb-2"><a href="/Apply" className="hover:text-gray-300 transition-all duration-300 ease-in-out block">Apply Now</a></li>
-              <li className="mb-2"><a href="#" className="hover:text-gray-300 transition-all duration-300 ease-in-out block">Terms and conditions</a></li>
+              <li className="mb-2"><a href="/AgentTerms" className="hover:text-gray-300 transition-all duration-300 ease-in-out block">Terms and conditions</a></li>
             </ul>
           </div>
 
