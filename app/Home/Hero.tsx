@@ -137,6 +137,12 @@ const Hero = () => {
               Agents
             </a>
             <a
+              href="/Admin/Login"
+              className="block py-2 text-lg hover:bg-gray-800 rounded-md"
+            >
+              Admin 
+            </a>
+            <a
               href="/About"
               className="block py-2 text-lg hover:bg-gray-800 rounded-md"
             >
@@ -162,10 +168,12 @@ const Hero = () => {
              find the best boarding houses at silverest in Lusaka with us .
           </p>
           <Link href="/Explore">
-            <a className="mt-6 inline-block bg-green-700 text-white px-6 py-2 rounded-full text-lg font-semibold hover:bg-orange-600 transition-all duration-300">
+            <p className="mt-6 inline-block bg-green-700 text-white px-6 py-2 rounded-full text-lg font-semibold hover:bg-orange-600 transition-all duration-300">
               Get Started
-            </a>
+            </p>
           </Link>
+
+        
         </div>
       </div>
     </div>

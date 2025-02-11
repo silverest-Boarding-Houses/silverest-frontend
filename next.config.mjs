@@ -5,8 +5,11 @@ const nextConfig = {
       'isograft.com', 
       'real-estate-zambia.beforward.jp', 
       'cf.bstatic.com',
-      'static.vecteezy.com'  // Added vecteezy domain here
-    ], // Add your domains here
+      'static.vecteezy.com',
+      'https://cdn-icons-png.flaticon.com',
+      'cdn-icons-png.flaticon.com' 
+       // Added vecteezy domain here
+    ], // Add your domains here  https://cdn-icons-png.flaticon.com/512/3135/3135715.png
   },
 };
 

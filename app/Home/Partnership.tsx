@@ -5,11 +5,11 @@ import React, { useState } from 'react';
 const faqs = [
   {
     question: "What is the process of booking a room?",
-    answer: "explore into our boarding houses click explore houses and start looking for your house according to your preferences"
+    answer: "explore into our boarding houses by clicking  Get started   and start looking for your house according to your preferences"
   },
   {
     question: "How do I pay?",
-    answer: "after finding a house click book now and fill the form and click book now you can pay using MTN momo payments and airtel Money"
+    answer: "after finding a house click book now and fill the form and click pay  now, you can pay using MTN momo payments and airtel Money"
   },
   {
     question: "what next after i book?",
@@ -18,7 +18,7 @@ const faqs = [
 
   {
     question: "any Questions?",
-    answer: "Contact us on the website on contact us page or call us on  +256 782 123 456"
+    answer: "Contact us on the website on contact us page "
   },
 ];
 

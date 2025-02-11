@@ -95,11 +95,14 @@ const ContactUs: React.FC = () => {
             {successMessage && <p className="text-green-600 text-sm mt-2">{successMessage}</p>}
             {errorMessage && <p className="text-red-600 text-sm mt-2">{errorMessage}</p>}
           </form>
+          
         </div>
+        
       </div>
-
-      <Footer />
+      <Footer></Footer>
+  
     </>
+    
   );
 };
 

@@ -197,6 +197,7 @@ const Explore = () => {
                 </div>
               ))
             ) : (
+              
               <p className="text-red">No boardinghouses found.</p>
             )}
           </div>
