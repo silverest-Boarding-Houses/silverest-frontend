@@ -5,7 +5,6 @@ import HomeIcon from '@heroicons/react/solid/HomeIcon';
 import TrashIcon from '@heroicons/react/solid/TrashIcon';
 import ClipboardListIcon from '@heroicons/react/solid/ClipboardListIcon';
 import NewspaperIcon from '@heroicons/react/solid/NewspaperIcon';
-import { CalendarIcon, DocumentAddIcon } from "@heroicons/react/solid";
 
 export default function AdminActions() {
   const [totalAmount, setTotalAmount] = useState(0);
