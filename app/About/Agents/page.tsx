@@ -89,7 +89,7 @@ const AgentsPage: React.FC = () => {
               </li>
             ))}
           </ul>
-          nppp
+          no agents found
         </div>
       )}
     </div>
