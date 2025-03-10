@@ -89,7 +89,10 @@ const AgentsPage: React.FC = () => {
               </li>
             ))}
           </ul>
-          no agents found
+          <td colSpan={4} className="text-center p-4">
+                  <p className="text-red-500">No admins found.</p>
+                </td>
+        
         </div>
       )}
     </div>
