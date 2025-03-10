@@ -3,6 +3,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; // Import styles for Toastify
 
 const LoginForm = () => {
   const [username, setUsername] = useState('');
@@ -19,9 +21,12 @@ const LoginForm = () => {
       });
       const { access_token } = response.data;
       localStorage.setItem('access_token', access_token);
+      toast.success("login sucessfully", { position: 'top-right' })
       router.push('/Admin'); 
+
     } catch (err) {
       console.error('Login error:', err); // Log the error for debugging
+      toast.error("incorrect credential", { position: 'top-right' })
       setError('Invalid username or password');
     }
   };
