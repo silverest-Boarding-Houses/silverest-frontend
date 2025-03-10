@@ -19,7 +19,7 @@ const BlogSection = () => {
     const fetchBlogs = async () => {
       setLoading(true);
       try {
-        const response = await fetch('http://localhost:3000/news');
+        const response = await fetch('https://silverestbackend-42mz.onrender.com/news');
         if (!response.ok) {
           throw new Error('Failed to fetch blogs');
         }

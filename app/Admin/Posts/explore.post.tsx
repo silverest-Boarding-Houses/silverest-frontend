@@ -21,7 +21,7 @@ const Posts = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:3000/boardinghouses/post', {
+      const response = await fetch('https://silverestbackend-42mz.onrender.com/boardinghouses/post', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

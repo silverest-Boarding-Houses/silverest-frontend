@@ -25,7 +25,7 @@ const SettingsPage = () => {
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/auth'); // Fetch user data
+        const response = await axios.get('https://silverestbackend-42mz.onrender.com/auth'); // Fetch user data
         if (response.data && response.data.length > 0) {
           const userData = response.data[0]; // Assuming you want the first user in the array
           setUser({
@@ -82,7 +82,7 @@ const SettingsPage = () => {
       formData.append('newPassword', user.newPassword);
 
       // Update user details
-      await axios.put(`http://localhost:3000/auth/${user.id}`, formData);
+      await axios.put(`https://silverestbackend-42mz.onrender.com/auth/${user.id}`, formData);
 
       // Upload profile image if selected
       if (imageFile) {
@@ -90,7 +90,7 @@ const SettingsPage = () => {
         imageFormData.append('profileImage', imageFile);
 
         await axios.post(
-          `http://localhost:3000/auth/${user.id}/uploadProfileImage`,
+          `https://silverestbackend-42mz.onrender.com/auth/${user.id}/uploadProfileImage`,
           imageFormData,
           { headers: { 'Content-Type': 'multipart/form-data' } }
         );

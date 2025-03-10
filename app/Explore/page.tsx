@@ -36,7 +36,7 @@ const Explore = () => {
     searchBy: 'location',
   });
 
-  const API_BASE_URL = "http://localhost:3000/boardinghouses";
+  const API_BASE_URL = "https://silverestbackend-42mz.onrender.com/boardinghouses";
 
   const getPlaceholder = (): string => {
     switch (filters.searchBy) {

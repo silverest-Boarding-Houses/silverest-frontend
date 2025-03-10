@@ -22,7 +22,7 @@ const Sidebar = () => {
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/auth'); // Replace with your API endpoint
+        const response = await axios.get('https://silverestbackend-42mz.onrender.com/auth'); // Replace with your API endpoint
         console.log('API Response:', response.data); // Debugging: Log the API response
         if (response.data && response.data[0]) {
           const userData = response.data[0]; // Assuming only one user in the response array

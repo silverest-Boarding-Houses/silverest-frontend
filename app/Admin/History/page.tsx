@@ -42,7 +42,7 @@ export default function BookingStoryPage() {
     setLoading(true);
     try {
       const response = await axios.post(
-        "http://localhost:3000/bookings/byselectedDate",
+        "https://silverestbackend-42mz.onrender.com/bookings/byselectedDate",
         { date: searchDate }
       );
       setBookings(response.data || []);
@@ -62,7 +62,7 @@ export default function BookingStoryPage() {
     setLoading(true);
     try {
       const response = await axios.get(
-        `http://localhost:3000/bookings/number/${searchBookingNumber}`
+        `https://silverestbackend-42mz.onrender.com/bookings/number/${searchBookingNumber}`
       );
       setBookings(response.data ? [response.data] : []);
     } catch (error) {

@@ -37,7 +37,7 @@ export default function DeleteBookingPage() {
   // Fetch all bookings
   const fetchBookings = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/bookings");
+      const response = await axios.get("https://silverestbackend-42mz.onrender.com/bookings");
       console.log("Bookings Data:", response.data); // Check if bookings are fetched correctly
       if (response.data && Array.isArray(response.data)) {
         setBookings(response.data);
@@ -56,7 +56,7 @@ export default function DeleteBookingPage() {
     if (!isConfirmed) return;
 
     try {
-      const response = await axios.delete(`http://localhost:3000/bookings/${id}`);
+      const response = await axios.delete(`https://silverestbackend-42mz.onrender.com/bookings/${id}`);
       if (response.status === 200) {
         setBookings(bookings.filter((booking) => booking.id !== id)); // Remove deleted booking from the list
       }

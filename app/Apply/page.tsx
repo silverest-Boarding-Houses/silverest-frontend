@@ -50,7 +50,7 @@ export default function Applicant() {
       formData.append('profileImage', selectedFile);
     }
     try {
-      await axios.post('http://localhost:3000/agents', formData);
+      await axios.post('https://silverestbackend-42mz.onrender.com/agents', formData);
       alert('Application submitted successfully');
       setApplicantData({
         firstname: '',

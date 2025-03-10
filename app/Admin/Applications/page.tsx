@@ -24,7 +24,7 @@ export default function Applications() {
   useEffect(() => {
     async function fetchAgents() {
       try {
-        const response = await axios.get('http://localhost:3000/agents');
+        const response = await axios.get('https://silverestbackend-42mz.onrender.com/agents');
         setAgents(response.data);
       } catch (error) {
         console.error('Error fetching agents:', error);
@@ -39,7 +39,7 @@ export default function Applications() {
     if (!isConfirmed) return;
 
     try {
-      const response = await axios.delete(`http://localhost:3000/agents/${id}`);
+      const response = await axios.delete(`https://silverestbackend-42mz.onrender.com/agents/${id}`);
       if (response.status === 200) {
         setAgents(agents.filter((Agent) => Agent.id !== id)); // Remove deleted agent from the list
         toast.success('Agent deleted successfully');
@@ -53,13 +53,13 @@ export default function Applications() {
   const handleStatusUpdate = async (id: number, status: 'approved' | 'rejected') => {
     try {
       // Update the agent's status
-      await axios.patch(`http://localhost:3000/agents/${id}/status`, { status });
+      await axios.patch(`https://silverestbackend-42mz.onrender.com/agents/${id}/status`, { status });
 
       // If the status is 'approved', add the agent to the admins list
       if (status === 'approved') {
         const agentToApprove = agents.find((agent) => agent.id === id);
         if (agentToApprove) {
-          await axios.post('http://localhost:3000/admins', {
+          await axios.post('https://silverestbackend-42mz.onrender.com/admins', {
             name: `${agentToApprove.firstname} ${agentToApprove.lastname}`,
             email: agentToApprove.email,
           });
@@ -106,7 +106,7 @@ export default function Applications() {
                 <td className="border p-2">
                   {agent.profileImage ? (
                     <Image
-                      src={`http://localhost:3000/uploads/agents/${agent.profileImage}`}
+                      src={`https://silverestbackend-42mz.onrender.com/uploads/agents/${agent.profileImage}`}
                       alt="Profile"
                       className="w-16 h-16 object-cover rounded-full"
                       width={64} // Width of the image

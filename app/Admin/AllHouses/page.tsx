@@ -25,7 +25,7 @@ export default function AvailableHouses() {
   const fetchHouses = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("http://localhost:3000/boardinghouses/allhouses");
+      const response = await axios.get("https://silverestbackend-42mz.onrender.com/boardinghouses/allhouses");
       setHouses(Array.isArray(response.data) ? response.data : []);
     } catch (error) {
       console.error("Error fetching house data:", error);
@@ -85,7 +85,7 @@ export default function AvailableHouses() {
                 <strong>Gender:</strong> {house.GenderCategory}
               </p>
               <p className="text-gray-600">
-                <strong>Price:</strong> ZK{house.Price} 
+                <strong>Price:</strong> ZK{house.Price}
               </p>
               <p className="text-gray-600">
                 <strong>Booking Fee:</strong> ZK{house.BookingFee}
@@ -97,11 +97,13 @@ export default function AvailableHouses() {
                 <strong>Status:</strong> {house.Status}
               </p>
               <button
-                className="mt-4 px-4 py-2 bg-green-700 text-white rounded hover:bg-orange-600 transition w-full"
-                onClick={() => alert(`Contact Landlord: ${house.LandlordPhoneNumber}`)}
+                className="bg-green-700 text-white py-2 px-4 rounded-lg hover:bg-orange-700 sm:mt-0 mt-4"
+                onClick={() => window.location.href = `tel:${house.LandlordPhoneNumber}`}
               >
                 Contact Landlord
               </button>
+
+
             </div>
           </div>
         ))}
@@ -109,3 +111,4 @@ export default function AvailableHouses() {
     </div>
   );
 }
+

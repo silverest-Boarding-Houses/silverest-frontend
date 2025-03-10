@@ -36,7 +36,7 @@ export default function BookingPage() {
   const fetchBookingData = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("http://localhost:3000/bookings/todayBookings");
+      const response = await axios.get("https://silverestbackend-42mz.onrender.com/bookings/todayBookings");
       console.log("API Response:", response.data); // Debugging
       setBookings(Array.isArray(response.data) ? response.data : []);
     } catch (error) {

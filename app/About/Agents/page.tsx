@@ -24,7 +24,7 @@ const AgentsPage: React.FC = () => {
   useEffect(() => {
     const fetchAgents = async () => {
       try {
-        const response = await fetch("http://localhost:3000/agents/all");
+        const response = await fetch("https://silverestbackend-42mz.onrender.com/agents/all");
         if (!response.ok) {
           throw new Error("Failed to fetch agents");
         }
@@ -89,6 +89,7 @@ const AgentsPage: React.FC = () => {
               </li>
             ))}
           </ul>
+          nppp
         </div>
       )}
     </div>

@@ -26,7 +26,7 @@ export default function DeleteHostelPage() {
   // Fetch all hostels
   const fetchHostels = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/boardinghouses/allhouses");
+      const response = await axios.get("https://silverestbackend-42mz.onrender.com/boardinghouses/allhouses");
 
       // Check the response data
       console.log("Hostels Data:", response.data);
@@ -48,7 +48,7 @@ export default function DeleteHostelPage() {
     if (!isConfirmed) return;
 
     try {
-      const response = await axios.delete(`http://localhost:3000/boardinghouses/${id}`);
+      const response = await axios.delete(`https://silverestbackend-42mz.onrender.com/boardinghouses/${id}`);
       if (response.status === 200) {
         setHostels(hostels.filter((hostel) => hostel.id !== id)); // Remove deleted hostel from the list
       }

@@ -20,7 +20,7 @@ const News = () => {
   // Fetch existing news
   const fetchNews = async () => {
     try {
-      const response = await fetch('http://localhost:3000/news');
+      const response = await fetch('https://silverestbackend-42mz.onrender.com/news');
       if (!response.ok) {
         throw new Error('Failed to fetch news');
       }
@@ -47,7 +47,7 @@ const News = () => {
     setSuccess('');
 
     try {
-      const response = await fetch('http://localhost:3000/news/postnews', {
+      const response = await fetch('https://silverestbackend-42mz.onrender.com/news/postnews', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -80,7 +80,7 @@ const News = () => {
   // Handle deleting news
   const handleDelete = async (id: string) => {
     try {
-      const response = await fetch(`http://localhost:3000/news/${id}`, {
+      const response = await fetch(`https://silverestbackend-42mz.onrender.com/news/${id}`, {
         method: 'DELETE',
       });
 

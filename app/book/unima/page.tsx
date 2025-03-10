@@ -23,7 +23,7 @@ const HostelListing = () => {
       setLoading(true);
       setError(null);
       try {
-        const response = await fetch('http://localhost:3000/hostel');
+        const response = await fetch('https://silverestbackend-42mz.onrender.com/hostel');
         if (!response.ok) {
           throw new Error('Failed to fetch hostels');
         }

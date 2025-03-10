@@ -14,7 +14,7 @@ const RegistrationForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:3000/auth/register', {
+      await axios.post('https://silverestbackend-42mz.onrender.com/auth/register', {
         username,
         email,
         password,

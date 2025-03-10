@@ -20,7 +20,7 @@ export default function AgentManagement() {
   // Fetch admins from the API
   const fetchAdmins = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/auth');
+      const response = await axios.get('https://silverestbackend-42mz.onrender.com/auth');
       setAdmins(Array.isArray(response.data) ? response.data : []);
     } catch (error) {
       console.error('Error fetching admins:', error);
@@ -40,7 +40,7 @@ export default function AgentManagement() {
     }
 
     try {
-      const response = await axios.post('http://localhost:3000/auth/register', newAdmin);
+      const response = await axios.post('https://silverestbackend-42mz.onrender.com/auth/register', newAdmin);
       if (response.status === 201) {
         setAdmins((prevAdmins) => [...prevAdmins, response.data]);
         setNewAdmin({ username: '', email: '', password: '' });
@@ -57,7 +57,7 @@ export default function AgentManagement() {
     if (!window.confirm('Are you sure you want to delete this admin?')) return;
 
     try {
-      const response = await axios.delete(`http://localhost:3000/auth/${id}`);
+      const response = await axios.delete(`https://silverestbackend-42mz.onrender.com/auth/${id}`);
       if (response.status === 200) {
         setAdmins((prevAdmins) => prevAdmins.filter((admin) => admin.id !== id));
         toast.success('Admin deleted successfully!', { position: 'top-right' });

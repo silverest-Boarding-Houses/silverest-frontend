@@ -131,7 +131,7 @@ const Hero = () => {
               Houses
             </a>
             <a
-              href="/Agents"
+              href="/About/Agents"
               className="block py-2 text-lg hover:bg-gray-800 rounded-md"
             >
               Agents
