@@ -187,12 +187,19 @@ const Explore = () => {
                   </p>
 
                   <div className="flex justify-center items-center mt-4">
-                    <a
-                      href={`/property/${explore.id}`}
-                      className="block w-32 rounded-md bg-green-700 px-3 py-2 text-center text-sm text-white shadow-sm hover:bg-orange-600 transition-all"
-                    >
-                      Book Now
-                    </a>
+                  <div className="flex justify-center items-center mt-4">
+  <a
+    href={`https://wa.me/265996222889?text=${encodeURIComponent(
+      `Hello, I'm interested in booking the following room:\n\n🏡 House Name: ${explore.HouseName}\n🛏️ Room Type: ${explore.RoomType}\n💰 Booking Fee: ZK ${explore.BookingFee}\n📍 Location: ${explore.Location}`
+    )}`}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="block w-32 rounded-md bg-green-700 px-3 py-2 text-center text-sm text-white shadow-sm hover:bg-orange-600 transition-all"
+  >
+    Book Now
+  </a>
+</div>
+
                   </div>
                 </div>
               ))
